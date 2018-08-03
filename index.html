@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>php学习</title>
+    <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+</head>
+<body>
+    <form>
+        <input type="text" name="username" placeholder="输入用户名">
+        <input type="text" name="pwd"  placeholder="输入用户名密码">
+        <button type="button" onclick="goreg()">提交注册</button>
+    </form>
+    <script>
+    function goreg(){
+      var username=$("input[name='username']").val();
+      var pwd=$("input[name='pwd']").val();
+      $.ajax({
+          url:"controller/reg.php",
+          type:"post",
+          data:{
+            username:username,
+            userpwd:pwd
+          },
+          success:function(res){
+              
+            res=JSON.parse(res);
+            if(res.success){
+                alert("添加成功");
+            }
+          }
+      })
+    }
+
+    </script>
+</body>
+</html>
